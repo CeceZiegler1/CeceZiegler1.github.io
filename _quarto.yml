@@ -1,8 +1,10 @@
 project:
   type: website
+  
 
 website:
   title: "My Awesome CSCI 0451 Blog"
+
   navbar:
     background: "#112a39"
     right:
@@ -18,6 +20,9 @@ format:
     title-block-banner-color: white
     theme: cosmo
     css: styles.css
+
+
+
 
 
 
