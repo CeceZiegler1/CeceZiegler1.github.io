@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "posts/perceptron_notebook/PerceptronBlog.html",
+    "href": "posts/perceptron_notebook/PerceptronBlog.html",
+    "title": "Perceptron Blog",
+    "section": "",
+    "text": "Here is a link to my source code.\nhttps://github.com/CeceZiegler1/CeceZiegler1.github.io/blob/main/posts/perceptron_notebook/perceptron.py"
+  },
+  {
+    "objectID": "posts/example-blog-post/index.html",
+    "href": "posts/example-blog-post/index.html",
+    "title": "Hello Blog",
+    "section": "",
+    "text": "This is an example of the blog posts that you’ll submit as your primary form of learning demonstration in CSCI 0451. I created this post by modifying the file posts/example-blog-post/index.ipynb in VSCode. You can also use JupyterLab for this editing if you prefer. Finally, it is possible to write blog posts without using notebooks by writing .qmd files, as illustrated here."
+  },
+  {
+    "objectID": "posts/example-blog-post/index.html#math",
+    "href": "posts/example-blog-post/index.html#math",
+    "title": "Hello Blog",
+    "section": "Math",
+    "text": "Math\nIn addition to regular text using the Markdown specification, you can also write mathematics, enclosed between dollar signs. The syntax for writing math is very similar to the syntax used in the \\(\\LaTeX\\) markup language. For example, $f(x) \\approx y$ renders to \\(f(x) \\approx y\\). To place complex mathematical expressions on their own lines, use double dollar signs. For example, the expression\n$$\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2$$\nrenders to:\n\\[\\mathcal{L}(a, b) = \\sum_{i = 1}^n (ax_i + b - y_i)^2\\;.\\]\nBehind the scenes, math is powered by the MathJax engine. For more on how to write math, check this handy tutorial and quick reference."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "My Awesome CSCI 0451 Blog",
+    "section": "",
+    "text": "This blog post illustrates my implementation of the perceptron algorithm, along with test cases to show its performance.\n\n\n\n\n\n\nFeb 12, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/PerceptronBlog.html#graph-of-change-in-accuracy-with-each-iteration",
+    "href": "posts/perceptron_notebook/PerceptronBlog.html#graph-of-change-in-accuracy-with-each-iteration",
+    "title": "Perceptron Blog",
+    "section": "Graph of Change in Accuracy with each Iteration",
+    "text": "Graph of Change in Accuracy with each Iteration\nThis graph shows the change in accuracy of the algorithm with each iteration. We can see here that it didn’t take the algorithm very long to converge to zero and reach an accuracy of 100%\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/PerceptronBlog.html#the-graph-below-shows-the-accuracy-over-time-of-non-linearly-seperable-data",
+    "href": "posts/perceptron_notebook/PerceptronBlog.html#the-graph-below-shows-the-accuracy-over-time-of-non-linearly-seperable-data",
+    "title": "Perceptron Blog",
+    "section": "The graph below shows the accuracy over time of non linearly seperable data",
+    "text": "The graph below shows the accuracy over time of non linearly seperable data\nWe can see from this graph that the accuracy fluctuates a lot with each iteration as the algorithm attempts to accuratley sort out the non-linearly separable data. It is unable to reach an accuracy of 100% with the best accuracy it reached coming at around 60%\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/PerceptronBlog.html#below-is-a-graph-of-the",
+    "href": "posts/perceptron_notebook/PerceptronBlog.html#below-is-a-graph-of-the",
+    "title": "Perceptron Blog",
+    "section": "Below is a graph of the",
+    "text": "Below is a graph of the\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nfrom matplotlib import pyplot as plt\n\nfrom sklearn.datasets import make_blobs\n\nfrom perceptron import Perceptron\n\n#np.random.seed(12345)\n\nn = 100\np_features = 5\n\nX, y = make_blobs(n_samples = 100, n_features = p_features - 1, centers = [(-1.7, -1.7), (1.7, 1.7)])\n\n\ny = 2*y -1\nX_ = np.append(X, np.ones((X.shape[0], 1)), 1)\n\n\np = Perceptron()\np.fit(X, y, max_steps = 1000)\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\n\n0.010000000000000009"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/PerceptronBlog.html#below-is-a-graph-of-the-change-in-accuracy-over-time-for-data-with-more-than-5-features",
+    "href": "posts/perceptron_notebook/PerceptronBlog.html#below-is-a-graph-of-the-change-in-accuracy-over-time-for-data-with-more-than-5-features",
+    "title": "Perceptron Blog",
+    "section": "Below is a graph of the change in accuracy over time for data with more than 5 features",
+    "text": "Below is a graph of the change in accuracy over time for data with more than 5 features\nWe can see from this graph, similar to our 2D linearly separable data, the algorithm did not take a long time to converge to zero and reach an accuracy of 100%\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nfrom matplotlib import pyplot as plt\n\nfrom sklearn.datasets import make_blobs\n\nfrom perceptron import Perceptron\n\n#np.random.seed(12345)\n\nn = 100\np_features = 5\n\nX, y = make_blobs(n_samples = 100, n_features = p_features - 1, centers = [(-1.7, -1.7), (1.7, 1.7)])\n\n\ny = 2*y -1\nX_ = np.append(X, np.ones((X.shape[0], 1)), 1)\n\n\np = Perceptron()\np.fit(X, y, max_steps = 1000)\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\n\n0.0"
+  }
+]
