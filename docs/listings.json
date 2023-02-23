@@ -2,7 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/example-blog-post/index.html"
+      "/posts/perceptron_notebook/PerceptronBlog.html",
+      "/posts/example-blog-post/index.html",
+      "/CeceZieglerRepo/posts/example-blog-post/index.html",
+      "/CeceZiegler1.github.io/posts/example-blog-post/index.html"
     ]
   }
 ]
