@@ -110,5 +110,33 @@
     "title": "About",
     "section": "",
     "text": "About this blog"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/index.html",
+    "href": "posts/perceptron_notebook/index.html",
+    "title": "Perceptron Blog",
+    "section": "",
+    "text": "Here is a link to my source code.\nhttps://github.com/CeceZiegler1/CeceZiegler1.github.io/blob/main/posts/perceptron_notebook/perceptron.py"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/index.html#graph-of-change-in-accuracy-with-each-iteration",
+    "href": "posts/perceptron_notebook/index.html#graph-of-change-in-accuracy-with-each-iteration",
+    "title": "Perceptron Blog",
+    "section": "Graph of Change in Accuracy with each Iteration",
+    "text": "Graph of Change in Accuracy with each Iteration\nThis graph shows the change in accuracy of the algorithm with each iteration. We can see here that it didn’t take the algorithm very long to converge to zero and reach an accuracy of 100%\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/index.html#the-graph-below-shows-the-accuracy-over-time-of-non-linearly-seperable-data",
+    "href": "posts/perceptron_notebook/index.html#the-graph-below-shows-the-accuracy-over-time-of-non-linearly-seperable-data",
+    "title": "Perceptron Blog",
+    "section": "The graph below shows the accuracy over time of non linearly seperable data",
+    "text": "The graph below shows the accuracy over time of non linearly seperable data\nWe can see from this graph that the accuracy fluctuates a lot with each iteration as the algorithm attempts to accuratley sort out the non-linearly separable data. It is unable to reach an accuracy of 100% with the best accuracy it reached coming at around 60%\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")"
+  },
+  {
+    "objectID": "posts/perceptron_notebook/index.html#below-is-a-graph-of-the-change-in-accuracy-over-time-for-data-with-more-than-5-features",
+    "href": "posts/perceptron_notebook/index.html#below-is-a-graph-of-the-change-in-accuracy-over-time-for-data-with-more-than-5-features",
+    "title": "Perceptron Blog",
+    "section": "Below is a graph of the change in accuracy over time for data with more than 5 features",
+    "text": "Below is a graph of the change in accuracy over time for data with more than 5 features\nWe can see from this graph, similar to our 2D linearly separable data, the algorithm did not take a long time to converge to zero and reach an accuracy of 100%\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nfrom matplotlib import pyplot as plt\n\nfrom sklearn.datasets import make_blobs\n\nfrom perceptron import Perceptron\n\n#np.random.seed(12345)\n\nn = 100\np_features = 5\n\nX, y = make_blobs(n_samples = 100, n_features = p_features - 1, centers = [(-1.7, -1.7), (1.7, 1.7)])\n\n\ny = 2*y -1\nX_ = np.append(X, np.ones((X.shape[0], 1)), 1)\n\n\np = Perceptron()\np.fit(X, y, max_steps = 1000)\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\n\n0.0"
   }
 ]
