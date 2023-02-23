@@ -7,5 +7,17 @@
       "/CeceZieglerRepo/posts/example-blog-post/index.html",
       "/CeceZiegler1.github.io/posts/example-blog-post/index.html"
     ]
+  },
+  {
+    "listing": "/CeceZieglerRepo/index.html",
+    "items": [
+      "/CeceZieglerRepo/posts/example-blog-post/index.html"
+    ]
+  },
+  {
+    "listing": "/CeceZiegler1.github.io/index.html",
+    "items": [
+      "/CeceZiegler1.github.io/posts/example-blog-post/index.html"
+    ]
   }
 ]
