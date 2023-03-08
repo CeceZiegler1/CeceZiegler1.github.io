@@ -3,8 +3,8 @@
     "listing": "/index.html",
     "items": [
       "/posts/gradient_blog/WarmUpBias.html",
-      "/posts/gradient_blog/LogRegBlog.html",
       "/posts/PenguinClassification/PenguinClassification.html",
+      "/posts/gradient_blog/LogRegBlog.html",
       "/posts/perceptron_notebook/PerceptronBlog.html",
       "/posts/example-blog-post/index.html"
     ]
