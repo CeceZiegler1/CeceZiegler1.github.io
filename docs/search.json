@@ -53,7 +53,7 @@
     "href": "posts/perceptron_notebook/PerceptronBlog.html#below-is-a-graph-of-the-change-in-accuracy-over-time-for-data-with-more-than-5-features",
     "title": "Perceptron Blog",
     "section": "Below is a graph of the change in accuracy over time for data with more than 5 features",
-    "text": "Below is a graph of the change in accuracy over time for data with more than 5 features\nWe can see from this graph, similar to our 2D linearly separable data, the algorithm did not take a long time to converge to zero and reach an accuracy of 100%\n\nimport numpy as np\nimport pandas as pd\nimport seaborn as sns\nfrom matplotlib import pyplot as plt\n\nfrom sklearn.datasets import make_blobs\n\nfrom perceptron import Perceptron\n\n#np.random.seed(12345)\n\nn = 100\np_features = 5\n\nX, y = make_blobs(n_samples = 100, n_features = p_features - 1, centers = [(-1.7, -1.7), (1.7, 1.7)])\n\n\ny = 2*y -1\nX_ = np.append(X, np.ones((X.shape[0], 1)), 1)\n\n\np = Perceptron()\np.fit(X, y, max_steps = 1000)\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")\n\n0.0"
+    "text": "Below is a graph of the change in accuracy over time for data with more than 5 features\nWe can see from this graph, similar to our 2D linearly separable data, the algorithm did not take a long time to converge to zero and reach an accuracy of 100%\n\n\nfig = plt.plot(p.history)\nxlab = plt.xlabel(\"Iteration\")\nylab = plt.ylabel(\"Accuracy\")"
   },
   {
     "objectID": "CeceZieglerRepo/posts/example-blog-post/index.html",
