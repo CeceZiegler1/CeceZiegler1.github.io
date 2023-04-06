@@ -2,8 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/mid-course.html",
       "/posts/gradient_blog/WarmUpBias.html",
+      "/posts/Untitled.html",
+      "/posts/vectorization-live.html",
+      "/posts/UnsupervisedImageBlog/UnsupervisedImage.html",
       "/posts/LinearRegressionBlog/LinearRegBlog.html",
+      "/posts/AuditingAllocativeBias.html",
       "/posts/PenguinClassification/PenguinClassification.html",
       "/posts/gradient_blog/LogRegBlog.html",
       "/posts/perceptron_notebook/PerceptronBlog.html",

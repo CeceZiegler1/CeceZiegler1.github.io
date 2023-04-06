@@ -42,7 +42,7 @@ class SVD_Image():
 
         for k in range:
             img_rec = self.svd_reconstruct(image, k)
-            storage = k * (m + n + 1)
+            storage = k * (m + n)
 
             storage_fraction = (storage / original_storage) *100 #computing percent of storage
 

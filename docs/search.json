@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "My Awesome CSCI 0451 Blog",
     "section": "",
-    "text": "This blog post illustrates my implementation of the linear regression, using the analytical formula and gradient decent.\n\n\n\n\n\n\nMar 12, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of penguin classification.\n\n\n\n\n\n\nMar 7, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of the logistic regression, using gradient decent.\n\n\n\n\n\n\nMar 2, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of the perceptron algorithm, along with test cases to show its performance.\n\n\n\n\n\n\nFeb 22, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
+    "text": "This blog post illustrates my implementation of singular value decomposition of an image using unsupervised learning.\n\n\n\n\n\n\nApr 6, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of the linear regression, using the analytical formula and gradient decent.\n\n\n\n\n\n\nMar 12, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of the linear regression, using the analytical formula and gradient decent.\n\n\n\n\n\n\nMar 12, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of penguin classification.\n\n\n\n\n\n\nMar 7, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of the logistic regression, using gradient decent.\n\n\n\n\n\n\nMar 2, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis blog post illustrates my implementation of the perceptron algorithm, along with test cases to show its performance.\n\n\n\n\n\n\nFeb 22, 2023\n\n\nCece Ziegler\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\nAn example blog post illustrating the key techniques you’ll need to demonstrate your learning in CSCI 0451.\n\n\n\n\n\n\nJan 10, 2023\n\n\nPhil Chodrow\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -166,5 +166,19 @@
     "title": "Linear Regression",
     "section": "Gradient Descent Score over Time",
     "text": "Gradient Descent Score over Time\nBelow is a graph of how the score increases overtime with the gradient decent implementation. As we can see from the graph, the score starts off low, but increases with each iteration as the weight vector moves down the gradient. My program runs for 100 iterations, but we can see the best score is reached around 20-25 iteration mark and reamains for the rest of the iterations.\n\nplt.plot(LR2.score_history)\nlabels = plt.gca().set(xlabel = \"Iteration\", ylabel = \"Score\")"
+  },
+  {
+    "objectID": "posts/UnsupervisedImageBlog/UnsupervisedImage.html",
+    "href": "posts/UnsupervisedImageBlog/UnsupervisedImage.html",
+    "title": "Unsupervised Learning",
+    "section": "",
+    "text": "Here is a link to my sorce code: https://github.com/CeceZiegler1/CeceZiegler1.github.io/blob/main/posts/UnsupervisedImageBlog/SVD_Image.py"
+  },
+  {
+    "objectID": "posts/UnsupervisedImageBlog/UnsupervisedImage.html#converting-imported-image-to-grey-scale",
+    "href": "posts/UnsupervisedImageBlog/UnsupervisedImage.html#converting-imported-image-to-grey-scale",
+    "title": "Unsupervised Learning",
+    "section": "Converting Imported Image to Grey Scale",
+    "text": "Converting Imported Image to Grey Scale\nBelow, I take my image that I imported and use the function provided in the assingment to convert my imaage to grey scale which also converts it to a matrix of values that allows us to compute singluar value decomposition. After converting the image to grey scale, I display both the original and the black and white image.\n\nfrom matplotlib import pyplot as plt\n\nfig, axarr = plt.subplots(1, 2, figsize = (7, 3))\n\ndef to_greyscale(im):\n    return 1 - np.dot(im[...,:3], [0.2989, 0.5870, 0.1140])\n\ngrey_img = to_greyscale(img)\n\naxarr[0].imshow(img)\naxarr[0].axis(\"off\")\naxarr[0].set(title = \"original\")\n\naxarr[1].imshow(grey_img, cmap = \"Greys\")\naxarr[1].axis(\"off\")\naxarr[1].set(title = \"greyscale\")\n\n[Text(0.5, 1.0, 'greyscale')]"
   }
 ]
