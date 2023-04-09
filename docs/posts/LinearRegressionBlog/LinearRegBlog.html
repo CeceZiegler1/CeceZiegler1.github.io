@@ -127,8 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <style>
     .quarto-title-block .quarto-title-banner {
       color: white;
-background-image: url(../../img/landscape.png);
-background-size: cover;
+background: img/landscape.png;
     }
     </style>
 
@@ -214,7 +213,7 @@ background-size: cover;
 
 
 
-<div class="cell" data-execution_count="35">
+<div class="cell" data-execution_count="453">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext autoreload</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>autoreload <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -225,7 +224,11 @@ background-size: cover;
 <section id="here-is-a-link-to-my-source-code" class="level4">
 <h4 class="anchored" data-anchor-id="here-is-a-link-to-my-source-code">Here is a link to my source code</h4>
 <p>https://github.com/CeceZiegler1/CeceZiegler1.github.io/blob/main/posts/LinearRegressionBlog/LinearRegression.py</p>
-<div class="cell" data-execution_count="317">
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>This post illustrates my implementation of linear regression using both the analytical formula we derived along with a gradient decent method similar to what I used in my logistic regression post. What I will show is that no matter which method of linear regression we use, we will arrive at the same result in terms of the score showing how well the model performs. After showing that both the analytical formula and gradient decent method arrive at the same result, I will look into how changing the number of features affects the training and validation score, and how it differs with the analytic method vs gradient decent.</p>
+<div class="cell" data-execution_count="454">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -248,7 +251,7 @@ background-size: cover;
 <section id="analytic-formula-implementation-and-results" class="level1">
 <h1>Analytic Formula Implementation and Results:</h1>
 <p>Below, I use the function provided in the assignment outline to create data to test my analytic fit implementation. For this implementation, I used my fit_analytic method which calculates the weight vector by using the formula that takes the inverse of the transpose of X with the dot prodct of X combined with the transpose of X dotted with y. After fitting my model on the test data, I print out the scores from the model when run on the train data and when run on the testing data. The results show that my model produces very similar scores on my training data and test data. the scores depend on how the data is randomized and where the points are, however, in the results below, the data that was randomly produced was well fitted to my analytic linear regression model, as I got a score of 0.7439 on the train data and 0.7361 on the test data.</p>
-<div class="cell" data-execution_count="443">
+<div class="cell" data-execution_count="457">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n_val <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> <span class="dv">1</span></span>
@@ -268,7 +271,7 @@ background-size: cover;
 <p><img src="LinearRegBlog_files/figure-html/cell-4-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="444">
+<div class="cell" data-execution_count="458">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> LinearRegression <span class="im">import</span> LinearRegression</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LinearRegression()</span>
@@ -277,15 +280,15 @@ background-size: cover;
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training score = </span><span class="sc">{</span>LR<span class="sc">.</span>score(X_train, y_train)<span class="sc">.</span><span class="bu">round</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Validation score = </span><span class="sc">{</span>LR<span class="sc">.</span>score(X_val, y_val)<span class="sc">.</span><span class="bu">round</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Training score = 0.7439
-Validation score = 0.7361</code></pre>
+<pre><code>Training score = 0.7662
+Validation score = 0.7483</code></pre>
 </div>
 </div>
 </section>
 <section id="gradient-descent-implementation-and-results" class="level1">
 <h1>Gradient Descent Implementation and Results</h1>
 <p>Below, I fit my data to my implementation of linear regression using gradient descent. For the gradient descent implementation, I computed the gradient using the formula L(w) = Pw - q where P is the transpose of X dotted with X and q is the transpose of X dotted with y. This is a more efficient way to compute the gradient as P and q will always stay the same, with w being the only thing that changes each iteration. What we are looking for in our gradient descent implementation is to get the same training and validation scores as the above implementation with the analytic formula. The results show that our gradient descent was calculated properly as the get the same scores as above when computed the scores on the train data and validation data.</p>
-<div class="cell" data-execution_count="445">
+<div class="cell" data-execution_count="459">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> LinearRegression <span class="im">import</span> LinearRegression</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>LR2 <span class="op">=</span> LinearRegression()</span>
@@ -294,14 +297,14 @@ Validation score = 0.7361</code></pre>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training score = </span><span class="sc">{</span>LR2<span class="sc">.</span>score(X_train, y_train)<span class="sc">.</span><span class="bu">round</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Validation score = </span><span class="sc">{</span>LR2<span class="sc">.</span>score(X_val, y_val)<span class="sc">.</span><span class="bu">round</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Training score = 0.7439
-Validation score = 0.7362</code></pre>
+<pre><code>Training score = 0.7662
+Validation score = 0.7483</code></pre>
 </div>
 </div>
 <section id="gradient-descent-score-over-time" class="level2">
 <h2 class="anchored" data-anchor-id="gradient-descent-score-over-time">Gradient Descent Score over Time</h2>
 <p>Below is a graph of how the score increases overtime with the gradient decent implementation. As we can see from the graph, the score starts off low, but increases with each iteration as the weight vector moves down the gradient. My program runs for 100 iterations, but we can see the best score is reached around 20-25 iteration mark and reamains for the rest of the iterations.</p>
-<div class="cell" data-execution_count="361">
+<div class="cell" data-execution_count="460">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.plot(LR2.score_history)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> plt.gca().<span class="bu">set</span>(xlabel <span class="op">=</span> <span class="st">"Iteration"</span>, ylabel <span class="op">=</span> <span class="st">"Score"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -312,8 +315,8 @@ Validation score = 0.7362</code></pre>
 </section>
 <section id="increasing-p-features-how-of-features-changes-training-and-validation-scores" class="level1">
 <h1>Increasing P Features: How # of Features Changes Training and Validation Scores</h1>
-<p>Below is a plot of how the training and validation scores change as the number of features are increased but the number of training points remains the same. The graph plots the number of features on the x axis and the score on the y axis. From the graph, it is shown that when the number of features increases, the validation score increases and eventually evens out at a perfect score of 1. However, the validation score starts off well and increases as the number of features increases until it gets near being equal to the total number of training points. Once it gets near being equal to the number of training points, the score takes a sharp drop off and eventually reaches zero. This can be attributed to overfitting our data when the number of features is equal to the training points, meaning it excells on the training data but is overfit and does poorly on validation data.</p>
-<div class="cell" data-execution_count="426">
+<p>Below is a plot of how the training and validation scores change as the number of features are increased but the number of training points remains the same. The graph plots the number of features on the x axis and the score on the y axis. From the graph, it is shown that when the number of features increases, the training score increases and eventually evens out at a perfect score of 1. However, the validation score starts off well and increases as the number of features increases until it gets near being equal to the total number of training points. Once it gets near being equal to the number of training points, the score takes a sharp drop off and eventually reaches zero. This can be attributed to overfitting our data when the number of features is equal to the training points, meaning it excells on the training data but is overfit and does poorly on validation data.</p>
+<div class="cell" data-execution_count="461">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">250</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n_val <span class="op">=</span> <span class="dv">250</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, n_train)</span>
@@ -344,7 +347,7 @@ Validation score = 0.7362</code></pre>
 <section id="increases-features-with-gradient-descent" class="level1">
 <h1>Increases Features with Gradient Descent</h1>
 <p>Below we look to see what happens with the training score and validation score as the number of features are increased. The graph plots the score on the y axis and the numbr of features on the x axis. I expected to see the same results as above with the analytic model, however what we see from the grpah is different. Instead of evening out to one, the training score continues to fluctuate for all values of p and never reaches a score of 1. The validation score is also different, as it also continues to fluctuate very similarly to the training score and ends up at about the same score instead of taking a sharp drop to zero like the validation score did in the analytic fit implementation above. This can be attributed to how the learning rate affects the gradient and the computation of the weight vector, w. I played around with different learning rate values, but the graph below appeared to be the best I could get for the scores with this iteration of data.</p>
-<div class="cell" data-execution_count="446">
+<div class="cell" data-execution_count="463">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">250</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n_val <span class="op">=</span> <span class="dv">250</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, n_train)</span>
@@ -363,7 +366,7 @@ Validation score = 0.7362</code></pre>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>plt.plot(p_features, train_score, label <span class="op">=</span> <span class="st">"Training Score"</span>)</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>plt.plot(p_features, val_score, label <span class="op">=</span> <span class="st">"Validation Score"</span>)</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Featureas'</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Number of Features'</span>)</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Score'</span>)</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -375,7 +378,7 @@ Validation score = 0.7362</code></pre>
 <section id="lasso-regularization" class="level1">
 <h1>LASSO Regularization:</h1>
 <p>Below is my implementation of LASSO Regularization. LASSO regularization makes the weight vector, w, smaller, and is beneficial when the number of features, p, is high. Below, I implemented the same graph I did above with number of features on the x axis and score on the y axis. This graph is similar to the analytic fit implementation. Here, it is shown that for the first part of the graph, as p increases, the validation score also increases. However, as the number of features nears the number of training points, the score begins to drop off, but not as sharply as in the alaytic fit implementation.</p>
-<div class="cell" data-execution_count="436">
+<div class="cell" data-execution_count="464">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> Lasso(alpha <span class="op">=</span> <span class="fl">0.001</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -384,11 +387,11 @@ Validation score = 0.7362</code></pre>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>L.fit(X_train, y_train)</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>L.score(X_val, y_val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="436">
-<pre><code>0.7778148940782778</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="464">
+<pre><code>0.7676087758931377</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="448">
+<div class="cell" data-execution_count="465">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">250</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n_val <span class="op">=</span> <span class="dv">250</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>p_features <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, n_train)</span>
@@ -415,6 +418,10 @@ Validation score = 0.7362</code></pre>
 <p><img src="LinearRegBlog_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>From this blog post, I learned how to implement linear regression in two different ways to arrive at the same result. I also learned how increases the number of features can benefit the validation score up to a certain point. When the number of features became too close or equal to the number of data points, the validation score took a deep dive even when the training score remained perfect. This is caused by overfitting. Our model was overfit, or trained too perfectly on the data set which caused it to do not as well on the testing data. Finally, I learned how to use LASSO Regularization. LASSO regularization shrinks the weight vector, w, and is supposed to help accuracy when there are more features. Overall, I learned a lot through implementing linear regression through both the formula we derived in class along with gradient decent. I will keep in mind aspects such as the effect increasing the number of features has on the validation score as I move forward with other implementations and projects.</p>
 
 
 </section>
