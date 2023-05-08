@@ -14,9 +14,6 @@ class KernelLogisticRegression:
         X_ = pad(X)
         self.X_train = X_
     
-        
-        #K = self.kernel(X_, X_, **self.kernel_kwargs)
-    
         self.y_train = y
         # Compute kernel matrix
         km = self.kernel(X_, X_, **self.kernel_kwargs)
