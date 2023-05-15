@@ -263,7 +263,7 @@
     "href": "posts/ML_Final_Proj_Post/index.html",
     "title": "Predicting Bat Speed",
     "section": "",
-    "text": "Source Code Here are the two links to the source code for our linear regression/RFE and random forest model. https://github.com/CeceZiegler1/ML_Final_Proj/blob/main/LinearRegressionAnalytic.py https://github.com/CeceZiegler1/ML_Final_Proj/blob/main/RandomForestRegressor.py"
+    "text": "Here are the two links to the source code for our linear regression/RFE and random forest model.\nhttps://github.com/CeceZiegler1/ML_Final_Proj/blob/main/LinearRegressionAnalytic.py\nhttps://github.com/CeceZiegler1/ML_Final_Proj/blob/main/RandomForestRegressor.py"
   },
   {
     "objectID": "posts/ML_Final_Proj_Post/index.html#personal-reflection",
