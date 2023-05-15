@@ -217,6 +217,7 @@ background-size: cover;
 
 
 
+<p>Source Code Here are the two links to the source code for our linear regression/RFE and random forest model. https://github.com/CeceZiegler1/ML_Final_Proj/blob/main/LinearRegressionAnalytic.py https://github.com/CeceZiegler1/ML_Final_Proj/blob/main/RandomForestRegressor.py</p>
 <section id="abstract-and-overview-of-significance-of-topic" class="level1">
 <h1>Abstract and Overview of Significance of Topic</h1>
 <p>Bat speed is a measure of player performance that has become increasingly popular for player development over the past decade. It is typically measured as the speed that the sweet spot of the bat (about 6 inches from the end of the barrel) is traveling when contact is made with the baseball. Bat speed has become increasingly popular due to its high correlation with exit velocity and subsequently hitting metrics such as expected batting average (xBA) or expected weighted on base average (xWOBA). Metrics such as xBA and xWOBA are modern metrics that are used to effectively quantify a players ability to contribute offensively in a positive manner. This increasing popularity in bat speed has led to a related increase in training methodologies based around developing it. Coaches across all levels of play use bat speed as a KPI to validate and inform individualized coaching decisions.</p>
@@ -228,9 +229,8 @@ background-size: cover;
 </section>
 <section id="values-statement" class="level1">
 <h1>Values Statement</h1>
-<ul>
-<li>see assignment post for what to include here</li>
-</ul>
+<p>This project will mainly be utilized by coaches or anybody concerned with player development in baseball. The information that our model would provide to coaches would allow them to make better coaching decisions. In addition to helping coaching staffs, the players themselves would also benefit from more directed training and better evaluation standards. The baseball offseason is very short, so being able to make the most of this time is extremely valuable.</p>
+<p>This dataset is the first of is the first of its kind to be released as open source. When open-source pitch physics data first became available, it fundamentally changed the way in which baseball was viewed and played. This information allowed both pitchers and hitters to have reliable and measurable feedback on every pitch. The availability of pitch-level biomechanics data has the potential to once again fundamentally change baseball. By working on this project, we are contributing to the larger effort of the baseball community to better understand exactly what makes a baseball swing productive.</p>
 </section>
 <section id="materials-and-methods" class="level1">
 <h1>Materials and Methods:</h1>
@@ -264,7 +264,7 @@ background-size: cover;
 <p>Our original dataset contained over 1,000,000 observations that were grouped by session_swing. Each swing contained hundreds of observations that analyzed a variety of features over time (~0.0028 seconds between captures). For our project, we wanted to remove this time aspect and instead create a simplified dataset that contained the minimum, maximum, and range values of the features of interest for each swing.</p>
 <p>To do so, we imported our dataset in R and grouped it by the session_swing variable, and, by using base R functions, calculated the minimum, maximum, and range of each feature variable of interest. We repeated this for the force plate dataset and joint velocity dataset, then used left-join to combine the two datasets to create a conglomerate dataset with all potential predictive features for each session_swing variable.</p>
 <p>We then added our target vector, max bat speed, from POI_metrics.csv to create our fill dataset that includes our target vector.</p>
-<p>This process allowed us to get reduce the size of our dataset from over 1,000,000 observations to 665 session_swings.</p>
+<p>This process allowed us to get reduce the size of our dataset from over 1,000,000 observations to 638 session_swings.</p>
 </section>
 <section id="step-2-rfe-feature-selection" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-rfe-feature-selection">Step 2: RFE Feature Selection</h3>
@@ -274,6 +274,7 @@ background-size: cover;
 <section id="step-3-building-the-models-multiple-linear-regression-and-random-forest" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-building-the-models-multiple-linear-regression-and-random-forest">Step 3: Building the Models —&nbsp;Multiple Linear Regression and Random Forest</h3>
 <p>We decided to implement our own linear regression model similar to the work we did in class, selecting just the analytic version. We were able to pull out score and predict functions from our previous blog post implementation. We had to modify our fit function by adding a regualarization term to the weight vector to help avoid over/under-fitting the model.</p>
+<p>We also decided to build our own random forest model. To do this, we used a fit, predict and score method. In the fit method, we performed bootstrapping in which at each iteration, a random observation is selected at random, with replacement. We then built the decision tree and recursively called our method. To get our predictions, we took the average of the predicitions from all of the trees.</p>
 </section>
 <section id="step-4-testing-the-models-linear-regression-and-random-forest" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-testing-the-models-linear-regression-and-random-forest">Step 4: Testing the Models: Linear Regression and Random Forest</h3>
@@ -288,7 +289,7 @@ background-size: cover;
 <p>We noticed that our model tends to have a higher testing accuracy when the model is ran on fewer features, and has the best training score when the model uses all 60 features. However, because we wanted to identify 10-20 key features, we decided to train and test our model on the 13 best features, which we selected as value that yields the second best testing score.</p>
 <p>The table shows the 13 most important features as selected by our RFE function. These results were quite unexpected, including values like min_rfx and min_rfy as selected variables of importance. min_rfx and min_rfy represent the minimum rear force produced in the x and y directions, which essentially represent the load, or backwards movement prior to the actual swing itself. Other variables make sense as being some of the most important features, such as range_lead_hip_z, and max_torso_pelvis_x as these are body parts that are essitial in creating the rotational force of a swing to help produce a better bat speed.</p>
 <p>Using a subset of these 13 features, we trained and tested our model, which produced a testing accuracy score of 38.7%. Unfortunately, this low accuracy indicates that our model isn’t performing as we had hoped. It could mean that our data doesn’t have a strong linear seperability which indicates there is nothing wrong with our model, but rather it isn’t the best model option for our data. Becasue of this, we decided to see if we could produce stronger results by using the Random Forest Regression model.</p>
-<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="1">
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> LinearRegressionAnalytic <span class="im">import</span> LinearRegressionAnalytic</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> LinearRegressionAnalytic <span class="im">import</span> rfe</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -561,7 +562,7 @@ background-size: cover;
 <p>Interestingly, there is only one feature that the Linear Regression model and the Random Forest Regression model both selected: max_rear_shoulder_y. This feature captures the top hand on the bat, so if the shoulder isn’t moving in the swing, it will hinder the ability to produce enough rotational force from the torso.</p>
 <p>We were suprised to find that, of the 13 features selected by the Linear Regression model and of the 15 features selected by the Random Forest Regression model, there weren’t more similarities amongst the selected features between the two models. We were hoping to discover a few select features that both models identified as important features, and were interested to find that the majority of the selected features were different.</p>
 <p>We hypothesize that the dimentionality of the forces produced by each body part may be a factor that contributes toward the challenge of distinguishing significant features. For example, in the Linear Regression model, max_toros_y was selected as an important feautre, and in the Random Forest Regression model, max_torso_z was selected as an important feature. This indicates that the max force produced by the torso is important when creating and predicting bat speed. If we were to run this experiment again, we may try getting rid of the x, y and z components and just use the average of the forces produced by that body part.</p>
-<div class="cell">
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_selection <span class="im">import</span> RFE</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> RandomForestRegressor()</span>
@@ -589,8 +590,11 @@ background-size: cover;
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Random Forest Regression"</span>)</span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.show() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-3-output-1.png" class="img-fluid"></p>
 </div>
-<div class="cell" data-execution_count="22">
+</div>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> RandomForestRegressor <span class="im">import</span> RandomForest</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>rf <span class="op">=</span> RandomForest()</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -841,9 +845,7 @@ background-size: cover;
 </section>
 <section id="application" class="level1">
 <h1>Application</h1>
-<ul>
-<li>How could this be used by other teams/sports/groups</li>
-</ul>
+<p>Our bat speed model could be used by coaching staffs to better inform the decisions that they make. For example, if a given player’s predicted bat speed is higher than their actual recorded bat speed, this would indicate a mechanical inefficiency in their swing. Coaches, with this knowledge, could then direct their focus to finding these mechanical ineffeciencies and correcting them. Players in this group would spend more time on skill acquisition training. On the other hand, if a player has a predicted bat speed which is equal to or lower than their actual bat speed, this would indicate above average efficiency in their swing and their training could be directed more towards general strength and power to increase force production. In either case, our model would help streamline the process from data collection to impact, giving coaches and players the power to have impactful training sessions tailored to each individual.</p>
 </section>
 <section id="group-contribution-statement" class="level1">
 <h1>Group Contribution Statement</h1>
@@ -851,8 +853,14 @@ background-size: cover;
 <p>David Byrne: Introduced topic. Managed data cleaning. Led writing of “Abstract and Overview of Significance of Topic”, “Data”, “Variable Overview”, “Values Statement”, and “Application” sections.</p>
 <p>Julia Fairbank: Led writing of “Formal Introduction to Topic”, “Recursive Feature Elimination”, “Multiple Linear Regression”, “Random Forest Regression”, “The Process”, and “Bias” sections.</p>
 <p>Sam Ehrsam: Conducted initial RFE experiments with SKLearn library. Built Random Forest Regression model. Performed RFE experiments.</p>
+<section id="personal-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="personal-reflection">Personal Reflection</h2>
+<p>I learned a lot in the process of completing our final project. First, I learned about recursive feature elimination and how it can be used in conjunction with different models to select the most important features. It was beneficial to learn how this function worked through the SKLearn package, and it was rewarding to build my own version of the function in our implementation of the linear regression model. I also learned how it can be difficult to find a model that works best for predicting on different data sets. We felt good about our different models going into the building and testing as we had researched what models worked well for predicting continuous numeric values. However, as we see from our results, our models weren’t super sucessful. I learned that it can be a long process that involves a lot of trial and error to build a model that performs well on your specific data set. I was hoping to learn more about which features are most important in predicting bat speed to potentially help me with my own swing, however due to the low accuracy scores and lack of coherence between the features each model pulled as being most important, I didn’t learn as much as I had hoped to in this sense.</p>
+<p>I am very satisfied with what I acheived during this project. My goal was to complete all of my tasks on time and help with the implementations and revisions of the project. I met this goal, as I finished all of my parts in a timely matter, and I built the linear regression model and RFE function we used with the linear regression implementation. I was an active participant in all of our group meetings and I helped with various written portions of the final report.</p>
+<p>I will carry what I learned from this project into various aspects of my life. First, I think it is important to be able to work in a group, especially in the technology world, and I learned skills regarding working on a project using git hub from this final. Aditionally, I enhanced my skills in building machine learning models and experimenting with data. I learned skills to determine which models are better suited for which data set, along with ways to pick out the best features. These are skills I foresee myself using in feature job opportunities and potential individual projects I have interest in working on. I am very excited about what I learned throughout this course and how I was able to apply and enhance those skills through this final project. Machine learning and data science is something I have a strong interest in pursuing as I move forward with my education and post grad life, and I am excited to apply the skills I learned throughout this class and during this project.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
